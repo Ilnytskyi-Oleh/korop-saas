@@ -35,5 +35,7 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
     //Articles
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function(){
         Route::get('/', 'IndexController')->name('articles.index');
+        Route::get('/create', 'CreateController')->name('articles.create');
+        Route::post('/', 'StoreController')->name('articles.store');
     });
 });
