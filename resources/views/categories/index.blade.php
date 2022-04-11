@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex flex-row">Articles
-                        <a href="{{ route('articles.create') }}" class="btn btn-primary ms-auto">New Article</a>
+                        <a href="{{ route('categories.create') }}" class="btn btn-primary ms-auto">New Category</a>
                     </div>
 
                     <div class="card-body">
@@ -24,14 +24,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($articles as $article)
+                            @foreach($categories as $category)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td>{{$article->title}}</td>
+                                    <td>{{$category->name}}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('articles.edit', $article) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-primary">Edit</a>
                                         <a href="#" class="btn btn-danger" onclick="document.getElementById('delete-form').submit()">Delete</a>
-                                        <form action="{{ route('articles.delete', $article) }}" method="POST" id="delete-form">
+                                        <form action="{{ route('categories.delete', $category) }}" method="POST" id="delete-form">
                                             @method('DELETE')
                                             @csrf
                                         </form>

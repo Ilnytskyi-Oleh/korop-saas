@@ -37,5 +37,18 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
         Route::get('/', 'IndexController')->name('articles.index');
         Route::get('/create', 'CreateController')->name('articles.create');
         Route::post('/', 'StoreController')->name('articles.store');
+        Route::get('/{article}/edit', 'EditController')->name('articles.edit');
+        Route::patch('/{article}', 'UpdateController')->name('articles.update');
+        Route::delete('/{article}', 'DeleteController')->name('articles.delete');
+    });
+
+    //Articles
+    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
+        Route::get('/', 'IndexController')->name('categories.index');
+        Route::get('/create', 'CreateController')->name('categories.create');
+        Route::post('/', 'StoreController')->name('categories.store');
+        Route::get('/{category}/edit', 'EditController')->name('categories.edit');
+        Route::patch('/{category}', 'UpdateController')->name('categories.update');
+        Route::delete('/{category}', 'DeleteController')->name('categories.delete');
     });
 });
