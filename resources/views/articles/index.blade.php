@@ -23,6 +23,8 @@
                                 @if(auth()->user()->is_admin)
                                     <th>User</th>
                                 @endif
+                                <th>Created At</th>
+                                <th>Published At</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -34,6 +36,8 @@
                                     @if(auth()->user()->is_admin)
                                         <td>{{ $article->user->name }}</td>
                                     @endif
+                                    <td>{{ $article->created_at }}</td>
+                                    <td>{{ $article->published_at }}</td>
                                     <td class="text-end">
                                         <a href="{{ route('articles.edit', $article) }}"
                                            class="btn btn-primary">Edit</a>

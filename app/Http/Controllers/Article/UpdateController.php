@@ -10,7 +10,11 @@ class UpdateController extends Controller
 {
     public function __invoke(Article $article, Request $request)
     {
-        $article->update($request->all());
+        $data = $request->all();
+        if(auth()->user()->is_admin || auth()->user()->is_publisher){
+            $data['published_at'] = $request->input('published') ? now() : null;
+        }
+        $article->update($data);
         return redirect()->route('articles.index');
     }
 }

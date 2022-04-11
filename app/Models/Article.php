@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
-    protected  $guarded = false;
+    protected $fillable = ['title', 'full_text', 'category_id', 'user_id', 'published_at'];
 
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
