@@ -20,6 +20,9 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
+                                @if(auth()->user()->is_admin)
+                                    <th>User</th>
+                                @endif
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -28,10 +31,16 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$article->title}}</td>
+                                    @if(auth()->user()->is_admin)
+                                        <td>{{ $article->user->name }}</td>
+                                    @endif
                                     <td class="text-end">
-                                        <a href="{{ route('articles.edit', $article) }}" class="btn btn-primary">Edit</a>
-                                        <a href="#" class="btn btn-danger" onclick="document.getElementById('delete-form').submit()">Delete</a>
-                                        <form action="{{ route('articles.delete', $article) }}" method="POST" id="delete-form">
+                                        <a href="{{ route('articles.edit', $article) }}"
+                                           class="btn btn-primary">Edit</a>
+                                        <a href="#" class="btn btn-danger"
+                                           onclick="document.getElementById('delete-form').submit()">Delete</a>
+                                        <form action="{{ route('articles.delete', $article) }}" method="POST"
+                                              id="delete-form">
                                             @method('DELETE')
                                             @csrf
                                         </form>

@@ -12,9 +12,15 @@ class Article extends Model
     use HasFactory;
     protected  $guarded = false;
 
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function booted()
     {
-        if( auth()->check()){
+        if( auth()->check() && !auth()->user()->is_admin){
             static::addGlobalScope('user', function (Builder $builder) {
                 $builder->where('user_id', auth()->user()->id);
             });

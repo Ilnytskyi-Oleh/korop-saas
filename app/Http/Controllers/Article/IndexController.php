@@ -10,8 +10,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-
-        $articles = Article::all();
+        $articles = Article::with('user')->get();
         return view('articles.index', compact('articles'));
     }
 }

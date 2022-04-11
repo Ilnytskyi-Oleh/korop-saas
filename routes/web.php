@@ -42,13 +42,19 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
         Route::delete('/{article}', 'DeleteController')->name('articles.delete');
     });
 
-    //Articles
-    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
-        Route::get('/', 'IndexController')->name('categories.index');
-        Route::get('/create', 'CreateController')->name('categories.create');
-        Route::post('/', 'StoreController')->name('categories.store');
-        Route::get('/{category}/edit', 'EditController')->name('categories.edit');
-        Route::patch('/{category}', 'UpdateController')->name('categories.update');
-        Route::delete('/{category}', 'DeleteController')->name('categories.delete');
+
+    //Admin routes
+    Route::group(['middleware' => 'is_admin'], function (){
+
+        //Categories
+        Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
+            Route::get('/', 'IndexController')->name('categories.index');
+            Route::get('/create', 'CreateController')->name('categories.create');
+            Route::post('/', 'StoreController')->name('categories.store');
+            Route::get('/{category}/edit', 'EditController')->name('categories.edit');
+            Route::patch('/{category}', 'UpdateController')->name('categories.update');
+            Route::delete('/{category}', 'DeleteController')->name('categories.delete');
+        });
     });
+
 });
