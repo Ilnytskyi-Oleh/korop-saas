@@ -20,7 +20,7 @@ class Article extends Model
 
     protected static function booted()
     {
-        if( auth()->check() && !auth()->user()->is_admin){
+        if( auth()->check() && !auth()->user()->is_admin && !auth()->user()->is_publisher){
             static::addGlobalScope('user', function (Builder $builder) {
                 $builder->where('user_id', auth()->user()->id);
             });
