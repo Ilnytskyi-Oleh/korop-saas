@@ -32,6 +32,9 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
         Route::get('/{plan}', 'CheckoutController')->name('checkout.checkout');
     });
 
+    //Invite
+    Route::view('invite', 'invite')->name('invite');
+
     //Articles
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function(){
         Route::get('/', 'IndexController')->name('articles.index');

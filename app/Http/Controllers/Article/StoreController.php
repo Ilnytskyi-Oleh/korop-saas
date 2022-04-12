@@ -14,7 +14,8 @@ class StoreController extends Controller
     {
         Article::create($request->all() +
             [
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->user()->organization_id ? auth()->user()->organization_id
+                                                            : auth()->user()->id,
                 'published_at' => Gate::allows('publish-articles')
                 && $request->input('published')  ? now() : null,
             ]);
