@@ -11,6 +11,8 @@ class EditController extends Controller
 {
     public function __invoke( Article $article)
     {
+        $this->authorize('update', $article);
+
         $categories = Category::all();
         return view('articles.edit', compact('article','categories'));
     }

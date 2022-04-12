@@ -34,7 +34,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @if(auth()->user()->is_publisher || auth()->user()->is_admin)
+                            @can('publish-articles')
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" id="published" name="published"
                                            @if($article->published_at)
@@ -45,7 +45,7 @@
                                         Published
                                     </label>
                                 </div>
-                            @endif
+                            @endcan
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
 

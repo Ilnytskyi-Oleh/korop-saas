@@ -20,9 +20,9 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                @if(auth()->user()->is_admin)
+                                @can('see-article-user')
                                     <th>User</th>
-                                @endif
+                                @endcan
                                 <th>Created At</th>
                                 <th>Published At</th>
                                 <th scope="col"></th>
@@ -33,9 +33,9 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$article->title}}</td>
-                                    @if(auth()->user()->is_admin)
+                                    @can('see-article-user')
                                         <td>{{ $article->user->name }}</td>
-                                    @endif
+                                    @endcan
                                     <td>{{ $article->created_at }}</td>
                                     <td>{{ $article->published_at }}</td>
                                     <td class="text-end">

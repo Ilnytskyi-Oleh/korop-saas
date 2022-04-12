@@ -10,6 +10,8 @@ class DeleteController extends Controller
 {
     public function __invoke(Article $article)
     {
+        $this->authorize('update', $article);
+
         $article->delete();
         return redirect()->route('articles.index');
     }
