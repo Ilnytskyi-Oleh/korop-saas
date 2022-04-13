@@ -44,7 +44,7 @@
                                         <a href="#" class="btn btn-danger"
                                            onclick="document.getElementById('delete-form').submit()">Delete</a>
                                         <form action="{{ route('articles.delete', $article) }}" method="POST"
-                                              id="delete-form">
+                                              id="delete-form-{{ $article->id }}">
                                             @method('DELETE')
                                             @csrf
                                         </form>

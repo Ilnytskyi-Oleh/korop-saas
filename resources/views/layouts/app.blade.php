@@ -54,6 +54,22 @@
                             </li>
                         @endif
                     @else
+                        @if( auth()->user()->organizations->count() > 1)
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ session('organization_name', '') }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @foreach(auth()->user()->organizations as $organization)
+                                        <a class="dropdown-item" href="{{ route('join.organization', $organization->id) }}">
+                                           {{ $organization->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('invite') }}">
                                 Invite

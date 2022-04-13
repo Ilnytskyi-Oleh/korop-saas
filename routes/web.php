@@ -35,6 +35,13 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth'], fu
     //Invite
     Route::view('invite', 'invite')->name('invite');
 
+    //Join
+    Route::group(['namespace' => 'Join','prefix' => 'join'], function (){
+        Route::get('/', 'CreateController')->name('join.create');
+        Route::post('/', 'StoreController')->name('join.store');
+        Route::get('/organization/{organization_id}', 'OrganizationController')->name('join.organization');
+    });
+
     //Articles
     Route::group(['namespace' => 'Article', 'prefix' => 'articles'], function(){
         Route::get('/', 'IndexController')->name('articles.index');

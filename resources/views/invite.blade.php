@@ -11,7 +11,11 @@
 
                     <div class="card-body">
                         Invitation link: <br> {{ route('register') }}?organization_id={{ auth()->user()->organization_id ? auth()->user()->organization_id : auth()->user()->id }}
+                        <div class="my-3">
+                            Invitation for existing users: <br> {{ route('join.create') }}?organization_id={{ auth()->user()->organization_id ? auth()->user()->organization_id : auth()->user()->id }}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
