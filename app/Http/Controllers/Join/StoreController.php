@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function __invoke(Request $request)
     {
-        auth()->user()->organizations()->attach($request->input('organization_id'));
+        auth()->user()->organizations()->attach($request->input('organization_id'),['role_id' => $request->input('role_id')]);
         return redirect()->route('home');
     }
 }

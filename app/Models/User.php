@@ -50,26 +50,40 @@ class User extends Authenticatable
         return $this->role_id == 2;
     }
 
+    public function getRoleIdAttribute()
+    {
+        if(session(['organization_role_id'])){
+            return session(['organization_role_id']);
+        }
+        return $this->attributes['role_id'];
+    }
+
     public function getIsPublisherAttribute()
     {
         return $this->role_id == 3;
     }
 
-    public  function organizations()
+    public function organizations()
     {
-        return $this->belongsToMany(User::class,'organization_user','user_id','organization_id');
+        return $this->belongsToMany(User::class,
+            'organization_user',
+            'user_id',
+            'organization_id')->withPivot(['role_id']);
     }
 
     public function getOrganizationIdAttribute()
     {
-        if( session('organization_id')){
+        if (session('organization_id')) {
             return session('organization_id');
         }
 
         $organization = $this->organizations()->first();
 
-        if($organization){
-            session(['organization_id'=>$organization->id,'organization_name' => $organization->name]);
+        if ($organization) {
+            session(['organization_id' => $organization->id,
+                'organization_name' => $organization->name,
+                'organization_role_id' => $organization->pivot->role_id,
+                ]);
             return $organization->id;
         }
 

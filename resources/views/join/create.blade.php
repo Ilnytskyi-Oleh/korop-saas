@@ -14,6 +14,13 @@
                             <div class="my-3">
                                 Do you want to join to {{ $organization->name }}?
                             </div>
+                            <div class="my-3">
+                                Join as:
+                                <select name="role_id" id="" class="form-control">
+                                    <option value="1">User</option>
+                                    <option value="3">Publisher</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Yes, I do!</button>
                         </form>
                     </div>
